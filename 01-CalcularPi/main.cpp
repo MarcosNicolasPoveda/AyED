@@ -2,16 +2,24 @@
 #include <cmath>
 
 using namespace std;
+
 int main()
 {
     double pi{0};
-    for (int n = 0; n < 1000000 ; n++)
-    { 
-        pi += (pow(-1,n))/ (2*n + 1);
+    double term {0};
+    double presicion {0.0000001};
+    double n = 0;
+    double absoluto {1};
+
+    while (absoluto > presicion){
+        term = (pow(-1,n))/ (2*n + 1);
+        absoluto = term >= 0? term : term * -1;
+        pi += term*4;
+        n++;
     }
-    pi = pi*4.00;
-    cout.precision(6);
-    cout << "El valor de pi es: " << fixed << pi <<endl;
+    
+    cout.precision(8);
+    cout<<"El valor de pi es: " << pi <<endl;
     
         return 0;
 }
